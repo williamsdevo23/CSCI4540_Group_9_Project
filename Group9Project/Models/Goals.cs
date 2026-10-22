@@ -1,5 +1,7 @@
 using SQLite;
 
+namespace GoalTracker.Models;
+
 public class Goal
 {
     [PrimaryKey, AutoIncrement]

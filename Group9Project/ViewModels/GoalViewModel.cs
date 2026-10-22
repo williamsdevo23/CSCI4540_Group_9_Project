@@ -21,7 +21,10 @@ public partial class GoalViewModel : ObservableObject
     private string description = "";
 
     [ObservableProperty]
+    [NotifyPropertyChangedFor(nameof(IsEditing))]
     private Goal? selectedGoal;
+
+    public bool IsEditing => SelectedGoal is not null;
 
     public GoalViewModel(GoalDatabaseService database)
     {
@@ -103,6 +106,12 @@ public partial class GoalViewModel : ObservableObject
         ClearFields();
 
         await RefreshAsync();
+    }
+
+    [RelayCommand]
+    private void CancelEdit()
+    {
+        ClearFields();
     }
 
     // Delete a goal

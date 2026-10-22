@@ -1,6 +1,6 @@
 ﻿using GoalTracker.ViewModels;
 
-namespace GoalTracker;
+namespace Group9Project;
 
 public partial class MainPage : ContentPage
 {
@@ -8,10 +8,9 @@ public partial class MainPage : ContentPage
 
     public MainPage(GoalViewModel viewModel)
     {
-        InitializeComponent();
-
         _viewModel = viewModel;
         BindingContext = _viewModel;
+        InitializeComponent();
     }
 
     protected override async void OnAppearing()
