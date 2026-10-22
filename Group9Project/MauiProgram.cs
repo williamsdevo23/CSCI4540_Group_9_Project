@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
+using GoalTracker.Services;
+using GoalTracker.ViewModels;
 
 namespace Group9Project;
 
@@ -7,8 +9,9 @@ public static class MauiProgram
 	public static MauiApp CreateMauiApp()
 	{
 		var builder = MauiApp.CreateBuilder();
-		builder
-			.UseMauiApp<App>()
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddTransient<GoalViewModel>();
+		builder.Services.AddTransient<GoalDatabaseService>()
 			.ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");

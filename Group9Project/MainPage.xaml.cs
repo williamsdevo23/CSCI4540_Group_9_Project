@@ -1,23 +1,24 @@
-﻿namespace Group9Project;
+﻿using GoalTracker.ViewModels;
+
+namespace GoalTracker;
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    private readonly GoalViewModel _viewModel;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage(GoalViewModel viewModel)
+    {
+        InitializeComponent();
 
-	private void OnCounterClicked(object? sender, EventArgs e)
-	{
-		count++;
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+    }
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+        await _viewModel.LoadGoalsCommand.ExecuteAsync(null);
+        await _viewModel.LoadChangesCommand.ExecuteAsync(null);
+    }
 }
