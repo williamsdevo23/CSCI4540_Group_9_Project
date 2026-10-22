@@ -1,7 +1,7 @@
 <Shell
     x:Class="Group9Project.AppShell"
     xmlns:local="clr-namespace:Group9Project"
-    Title="Group9Project">
+    Title="Goal Tracker">
 
     <ShellContent
         x:Name="MainPageShellContent"
